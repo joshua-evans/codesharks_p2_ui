@@ -1,0 +1,33 @@
+Instructions (in progress)
+REACT
+Need node >= 14.0.0
+Need npm >= 5.6
+
+// create react app
+npx create-react-app appName // this part can take a minute or two, npx is not a typo
+cd ./appName                 //
+npm start                    // Start react server, will open in browser, run in app root directory
+
+public -> html, stuff people can get to from their browser
+src -> React stuff , there's .js (for react) and CSS 
+       index.js imports everything
+
+
+// build react app
+npm run build // creates an optimized build in your build folder
+              // ^ I have not tried this yet
+
+//Changed the port in package.json to 8080 so won't conflict with backend on 3000
+
+//don't know if we need this in the login form in render on LoginForm.js 
+method="POST" action="localhost:3000/trial-by-combat/auth/login"
+
+// might need this 
+"proxy" : "http://localhost:3000/",
+//in package.json, can just put in first section
+
+
+BOOTSTRAP 
+npm install bootstrap
+// add this near the top (above other css imports) of a .js page to use bootstrap:
+    import 'bootstrap/dist/css/bootstrap.css';
