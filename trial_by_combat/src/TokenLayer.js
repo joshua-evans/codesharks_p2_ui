@@ -10,7 +10,7 @@ import Header from './Header';
 class TokenLayer extends React.Component {
     
     state = {
-        username:"",
+        player:{username:""},
         userid:"",
         token:"",
         visibleComponent:"LoginForm",
@@ -39,7 +39,7 @@ class TokenLayer extends React.Component {
     clickLogout = () => {
         this.setState({visibleComponent:"LoginForm"});
         this.setState({token:""});
-        this.setState({username:""});
+        this.setState({player:{username:""}});
     }
 
     clickDashboard = () => {
@@ -63,7 +63,7 @@ class TokenLayer extends React.Component {
             try {
                 const fetchResponse = await fetch(`${this.state.server}/trial-by-combat/player/me`, settings);
                 const data = await fetchResponse.json();
-                this.setState(data);
+                this.setState({player:data});
             } catch (e) {
                 console.log(e);
                 //return e;
@@ -75,7 +75,7 @@ class TokenLayer extends React.Component {
         const {name} = this.state;
         return (
             <>
-                <Header username = {this.state.username} 
+                <Header username = {this.state.player.username} 
                     loginCallback = {this.clickLogin} 
                     registerCallback = {this.clickRegister}    
                     logoutCallback = {this.clickLogout}
