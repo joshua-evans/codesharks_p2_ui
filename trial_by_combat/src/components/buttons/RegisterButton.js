@@ -1,5 +1,4 @@
-import React from "react";
-import './header.css';
+import React from "react";;
 
 class RegisterButton extends React.Component {
     constructor(props) {
