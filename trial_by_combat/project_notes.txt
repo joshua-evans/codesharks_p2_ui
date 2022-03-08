@@ -1,3 +1,24 @@
+Phil's notes:
+
+To run on your own system, after cloning this you'll need to go the trial-by-combat directory
+open git bash
+run npm install
+
+make sure spring boot is running on localhost:3000
+
+run npm start
+
+now you can access the react app from localhost:8080 and it will autorefresh whenever you change the .js files and save
+
+Make a component and if necessary sub components to satisfy user stories
+Add the component to TokenLayer.js render function
+Make sure your component has a render function similar to LoginForm or RegistrationForm, and only displays itself
+when the visibleComponent property is set to the name of that component.
+
+See clickRegister, clickLogin, Header.js, LoginButton.js, and RegisterButton.js for examples of how to change which component should be visible
+
+Josh's notes:
+
 Instructions (in progress)
 REACT
 Need node >= 14.0.0
