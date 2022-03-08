@@ -32,7 +32,11 @@ class WeaponForm extends React.Component {
         try {
             const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/weapon`, settings);
             const data = await fetchResponse.json();
-            this.props.parentCallback(data);
+            let d = data.description,
+                die = data.damageDie,
+                b = data.damageBonus,
+                p = data.price;
+            alert(`Successfully created a weapon called ${data.itemname}, described as ${d} with damage die= ${d} damage bonus= ${b} and a price of ${p} gold`);
             event.preventDefault();
             //return data;
         } catch (e) {
