@@ -1,5 +1,4 @@
 import React from "react";
-import './header.css';
 
 class LoginButton extends React.Component {
     constructor(props) {

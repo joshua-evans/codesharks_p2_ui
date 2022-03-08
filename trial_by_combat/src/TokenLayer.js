@@ -1,14 +1,18 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 
-import LoginForm from './LoginForm';
-import RegistrationForm from './RegistrationForm';
+import './login_form.css';
+import LoginForm from './components/forms/LoginForm';
+import RegistrationForm from './components/forms/RegistrationForm';
+import UserDashboard from './components/UserDashboard';
 import Header from './Header';
+import WeaponForm from './components/forms/WeaponForm';
 
 class TokenLayer extends React.Component {
     
     state = {
-        username:"",
+        player:{username:""},
+        userid:"",
         token:"",
         visibleComponent:"LoginForm",
         server:"http://localhost:3000"    
@@ -17,6 +21,7 @@ class TokenLayer extends React.Component {
     handleLogin = (childData) => {
         this.setState({token: childData.token});
         this.getUsername();
+        this.setState({visibleComponent:"UserDashboard"});
     }
 
     handleRegistration = (childData) => {
@@ -32,6 +37,20 @@ class TokenLayer extends React.Component {
         this.setState({visibleComponent:"LoginForm"});
     }
 
+    clickLogout = () => {
+        this.setState({visibleComponent:"LoginForm"});
+        this.setState({token:""});
+        this.setState({player:{username:""}});
+    }
+
+    clickDashboard = () => {
+        this.setState({visibleComponent:"UserDashboard"});
+    }
+
+    dashboardRedirect = (childData) => {
+        this.setState({visibleComponent:childData});
+    }
+
     getUsername() {
         (async () => {
             const settings = {
@@ -45,7 +64,7 @@ class TokenLayer extends React.Component {
             try {
                 const fetchResponse = await fetch(`${this.state.server}/trial-by-combat/player/me`, settings);
                 const data = await fetchResponse.json();
-                this.setState(data);
+                this.setState({player:data});
             } catch (e) {
                 console.log(e);
                 //return e;
@@ -57,12 +76,16 @@ class TokenLayer extends React.Component {
         const {name} = this.state;
         return (
             <>
-                <Header username = {this.state.username} 
+                <Header username = {this.state.player.username} 
                     loginCallback = {this.clickLogin} 
                     registerCallback = {this.clickRegister}    
+                    logoutCallback = {this.clickLogout}
+                    dashboardCallback = {this.clickDashboard}
                 /> 
                 <LoginForm server = {this.state.server} parentCallback = {this.handleLogin} visibleComponent = {this.state.visibleComponent} />  
                 <RegistrationForm server = {this.state.server} parentCallback = {this.handleRegistration} visibleComponent = {this.state.visibleComponent} />
+                <UserDashboard authToken = {this.state.token} server = {this.state.server} parentCallback = {this.dashboardRedirect} visibleComponent = {this.state.visibleComponent} />
+                <WeaponForm authToken = {this.state.token} server = {this.state.server} parentCallback = {this.dashboardRedirect} visibleComponent = {this.state.visibleComponent} />
             </>
         );
     }

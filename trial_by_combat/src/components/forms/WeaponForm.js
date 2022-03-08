@@ -1,5 +1,5 @@
 //import logo from './logo.svg';
-import './weapon_form.css';
+//import './weapon_form.css';
 import React from "react";
 
 class WeaponForm extends React.Component {
@@ -43,7 +43,7 @@ class WeaponForm extends React.Component {
   }
  
     render() {
-        if (this.props.visibleComponent === 'WeaponForm') {
+        if (true) {
             return (
                 <div class="col d-flex justify-content-center">
                     <p>{this.state.postId}</p>
