@@ -36,7 +36,7 @@ class HealingPotionForm extends React.Component {
                 die = data.healingDie,
                 b = data.healingBonus,
                 p = data.price;
-            alert(`Successfully created a healing potion called ${data.itemname}, described as ${d} with healing die= ${d} healing bonus= ${b} and a price of ${p} gold`);
+            alert(`Successfully created a healing potion called ${data.itemname}, described as ${d} with healing die= ${die} healing bonus= ${b} and a price of ${p} gold`);
             event.preventDefault();
             //return data;
         } catch (e) {

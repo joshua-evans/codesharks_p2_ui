@@ -36,7 +36,7 @@ class WeaponForm extends React.Component {
                 die = data.damageDie,
                 b = data.damageBonus,
                 p = data.price;
-            alert(`Successfully created a weapon called ${data.itemname}, described as ${d} with damage die= ${d} damage bonus= ${b} and a price of ${p} gold`);
+            alert(`Successfully created a weapon called ${data.itemname}, described as ${d} with damage die= ${die} damage bonus= ${b} and a price of ${p} gold`);
             event.preventDefault();
             //return data;
         } catch (e) {
