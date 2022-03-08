@@ -6,7 +6,7 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props) // have to call this or this.props will be undefined in the constructor
                  //  can lead to bugs https://reactjs.org/docs/react-component.html#constructor
-    this.state = {value: "test"};
+    this.state = {value: ""};
     this.handleChange = this.handleChange.bind(this);  // binds the method to the class
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -31,9 +31,12 @@ class LoginForm extends React.Component {
             const fetchResponse = await fetch("http://localhost:3000/trial-by-combat/auth/login", settings);
             const data = await fetchResponse.json();
 			console.log(data);
-            return data;
+            this.props.parentCallback(data);
+            event.preventDefault();
+            //return data;
         } catch (e) {
-            return e;
+            console.log(e);
+            //return e;
         }  
     })();  
   }
@@ -42,7 +45,7 @@ class LoginForm extends React.Component {
         return (
             <div class="col d-flex justify-content-center">
                 <p>{this.state.postId}</p>
-                <form class="login_form" method="POST" action="localhost:3000/trial-by-combat/auth/login" onSubmit={this.handleSubmit}>
+                <form class="login_form" method="POST" action="javascript:void(0);" onSubmit={this.handleSubmit}>
                     <div class="form-group">                    
                         <input
                             name= 'username'

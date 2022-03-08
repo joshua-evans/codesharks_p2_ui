@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
+
+import TokenLayer from './TokenLayer.js';
 //import './index.css';
-import LoginForm from './LoginForm';
-import Header from './Header';
 //import reportWebVitals from './reportWebVitals';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <div id="react-wrapper">
-      <Header />
-      <LoginForm />
-    </div>
+      <TokenLayer />
   </React.StrictMode>,
   document.getElementById('root')
 );
