@@ -47,7 +47,7 @@ class HealingPotionForm extends React.Component {
   }
  
     render() {
-        if (true) {
+        if (this.props.visibleComponent === 'HealingPotionForm') {
             return (
                 <div class="col d-flex justify-content-center">
                     <p>{this.state.postId}</p>

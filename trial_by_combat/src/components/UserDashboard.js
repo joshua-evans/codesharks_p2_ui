@@ -39,6 +39,14 @@ class UserDashboard extends React.Component {
         }  
     })();  
   }
+
+    clickCreateWeapon = () => {
+        this.props.parentCallback('WeaponForm');
+    }
+
+    clickCreateHealingPotion = () => {
+        this.props.parentCallback('HealingPotionForm');
+    }
  
     render() {
         if (this.props.visibleComponent === 'UserDashboard') {
@@ -47,9 +55,9 @@ class UserDashboard extends React.Component {
                 <div class="col d-flex justify-content-center">
                     <div>
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <li><a class="nav-link px-2">Create Weapon</a></li>
+                            <li><a class="nav-link px-2" onClick={this.clickCreateWeapon}>Create Weapon</a></li>
                             <li><a class="nav-link px-2">Create Armor</a></li>
-                            <li><a class="nav-link px-2">Create Potion</a></li>
+                            <li><a class="nav-link px-2" onClick={this.clickCreateHealingPotion}>Create Potion</a></li>
                             <li><a class="nav-link px-2">Create Loadout</a></li>
                         </ul>
                     </div>

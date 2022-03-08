@@ -47,7 +47,7 @@ class WeaponForm extends React.Component {
   }
  
     render() {
-        if (true) {
+        if (this.props.visibleComponent === 'WeaponForm') {
             return (
                 <div class="col d-flex justify-content-center">
                     <p>{this.state.postId}</p>
