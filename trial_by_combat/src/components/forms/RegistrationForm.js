@@ -1,5 +1,3 @@
-//import logo from './logo.svg';
-import './login_form.css';
 import React from "react";
 
 class RegistrationForm extends React.Component {

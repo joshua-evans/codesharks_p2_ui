@@ -1,5 +1,4 @@
 import React from "react";
-import './header.css';
 
 class LogoutButton extends React.Component {
     constructor(props) {
@@ -7,7 +6,7 @@ class LogoutButton extends React.Component {
     }
 
     render() {
-        return (<li><a href="" class="nav-link px-2 text-white">Logout {this.props.username}</a></li>);
+        return (<li><a class="nav-link px-2 text-white" onClick={this.props.logoutCallback}>Logout {this.props.username}</a></li>);
     }
 }
 
