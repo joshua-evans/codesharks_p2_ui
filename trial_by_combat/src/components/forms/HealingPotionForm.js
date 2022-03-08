@@ -62,7 +62,7 @@ class HealingPotionForm extends React.Component {
                         <div class="form-group">                    
                             <input
                                 name= 'description'
-                                placeholder='Enter Description for Healing Potion'
+                                placeholder='Enter Description'
                                 type= 'text'
                                 onChange = {this.handleInputchange} />
                         </div>
