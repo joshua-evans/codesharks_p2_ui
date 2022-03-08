@@ -2,16 +2,15 @@
 import './login_form.css';
 import React from "react";
 
-class LoginForm extends React.Component {
+class RegistrationForm extends React.Component {
   constructor(props) {
-    super(props) // have to call this or this.props will be undefined in the constructor
-                 //  can lead to bugs https://reactjs.org/docs/react-component.html#constructor
+    super(props) 
     this.state = {value: ""};
-    this.handleChange = this.handleChange.bind(this);  // binds the method to the class
+    this.handleChange = this.handleChange.bind(this);  
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
-      this.setState({value: event.target.value}); // I think this sets the value we grab on submit
+      this.setState({value: event.target.value}); 
   }
   handleSubmit(event) {
     (async () => {
@@ -22,12 +21,13 @@ class LoginForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
+                email:event.target.email.value,
                 username:event.target.username.value,
-                password:event.target.password.value 
+                password:event.target.password.value
             })
         };
         try {
-            const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/auth/login`, settings);
+            const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/player/register`, settings);
             const data = await fetchResponse.json();
             this.props.parentCallback(data);
             event.preventDefault();
@@ -40,11 +40,18 @@ class LoginForm extends React.Component {
   }
  
     render() {
-        if ( this.props.visibleComponent==="LoginForm") {
+        if (this.props.visibleComponent === 'RegistrationForm') {
             return (
                 <div class="col d-flex justify-content-center">
                     <p>{this.state.postId}</p>
                     <form class="login_form" method="POST" action="javascript:void(0);" onSubmit={this.handleSubmit}>
+                        <div class="form-group">                    
+                            <input
+                                name= 'email'
+                                placeholder='Enter Email'
+                                type= 'email'
+                                onChange = {this.handleInputchange} />
+                        </div>
                         <div class="form-group">                    
                             <input
                                 name= 'username'
@@ -59,21 +66,20 @@ class LoginForm extends React.Component {
                             type= 'password'
                             onChange = {this.handleInputchange} />
                         </div>
-                        <input type="submit"  value="Login" />
+                        <input type="submit"  value="Register" />
                     </form>
                 </div>
                 
             );
-            
         }
-        
+
         else {
             return (
-                <div></div>
+                <div hidden></div>
             );
         }
     }
 
 }
 
-export default LoginForm;
+export default RegistrationForm;
