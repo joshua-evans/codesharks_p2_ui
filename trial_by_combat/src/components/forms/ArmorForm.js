@@ -45,7 +45,7 @@ class ArmorForm extends React.Component {
   }
  
     render() {
-        if (this.props.visibleComponent === 'WeaponForm') {
+        if (this.props.visibleComponent === 'ArmorForm') {
             return (
                 <div class="col d-flex justify-content-center">
                     <p>{this.state.postId}</p>
