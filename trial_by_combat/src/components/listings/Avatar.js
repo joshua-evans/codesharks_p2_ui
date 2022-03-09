@@ -3,6 +3,12 @@ import React from "react";
 class Avatar extends React.Component {
     constructor(props) {
         super(props);
+
+        this.selectAvatar = this.selectAvatar.bind(this);
+    }
+
+    selectAvatar = () => {
+        this.props.parentCallback(this.props.id);
     }
 
     render() {
@@ -18,6 +24,7 @@ class Avatar extends React.Component {
                 <td>{this.props.gold}</td>
                 <td>{this.props.currentHealth}</td>
                 <td>{this.props.maximumHealth}</td>
+                <td><a class="nav-link px-2" onClick = {this.selectAvatar}>Select</a></td>
             </tr>
         )
     }

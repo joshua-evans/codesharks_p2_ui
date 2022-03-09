@@ -7,10 +7,12 @@ import Header from './Header';
 import LoginForm from './components/forms/LoginForm';
 import RegistrationForm from './components/forms/RegistrationForm';
 import UserDashboard from './components/UserDashboard';
+import AvatarDashboard from "./components/AvatarDashboard";
 import ChallengeBoard from './components/ChallengeBoard';
 import WeaponForm from './components/forms/WeaponForm';
 import HealingPotionForm from './components/forms/HealingPotionForm';
 import LoadoutForm from './components/forms/LoadoutForm';
+
 
 class TokenLayer extends React.Component {
     
