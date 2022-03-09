@@ -78,7 +78,7 @@ class ArmorForm extends React.Component {
                                 type= 'number'
                                 onChange = {this.handleInputchange} />
                         </div>
-                        <input type="submit"  value="Armor" />
+                        <input type="submit"  value="Create" />
                     </form>
                 </div>
                 

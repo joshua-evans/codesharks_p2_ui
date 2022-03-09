@@ -80,7 +80,7 @@ class WeaponForm extends React.Component {
                                 type= 'number'
                                 onChange = {this.handleInputchange} />
                         </div>
-                        <input type="submit"  value="Weapon" />
+                        <input type="submit"  value="Create" />
                     </form>
                 </div>
                 
