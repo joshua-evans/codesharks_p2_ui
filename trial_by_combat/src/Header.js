@@ -28,7 +28,7 @@ class Header extends React.Component {
                     <h1>Trial By Combat</h1>
                     </a>
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a class="nav-link px-2 text-white">Challenge Board</a></li>
+                    <li><a class="nav-link px-2 text-white" onClick={this.props.challengeCallback}>Challenge Board</a></li>
                     <li><a class="nav-link px-2 text-white">About</a></li>
                     {auth}
                     </ul>
