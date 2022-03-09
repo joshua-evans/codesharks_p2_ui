@@ -8,9 +8,9 @@ class Challenge extends React.Component {
     render() {
         return (
             <tr>
-                <td>{this.props.avatar}</td>
+                <td>{this.props.avatar.avatarname}</td>
                 <td></td>
-                <td>{this.props.challenger}</td>
+                <td>{this.props.challenger.avatarname}</td>
             </tr>
         )
     }
