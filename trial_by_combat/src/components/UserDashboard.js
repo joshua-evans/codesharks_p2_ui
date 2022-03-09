@@ -1,4 +1,6 @@
 import React from "react";
+import AvatarList from './AvatarList';
+
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -51,11 +53,11 @@ class UserDashboard extends React.Component {
     clickCreateLoadout = () => {
         this.props.parentCallback('LoadoutForm');
     }
- 
+
     render() {
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
-
+                <div class="container">
                 <div class="col d-flex justify-content-center">
                     <div>
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -78,7 +80,11 @@ class UserDashboard extends React.Component {
                     </form>
 
                 </div>
-                
+                    <div>
+                        <AvatarList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
+                    </div>
+
+                </div>
             );
         }
 

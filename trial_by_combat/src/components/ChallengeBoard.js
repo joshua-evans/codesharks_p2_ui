@@ -28,10 +28,11 @@ class ChallengeBoard extends React.Component {
             const data = await fetchResponse.json();
             let i = 0;
             data.forEach((challenge) => {
-                challengeArray.push( <Challenge avatar = {challenge.avatar.avatarname} challenger = {challenge.challenger.avatarname} key = {i} /> );
+                challengeArray.push( <Challenge avatar = {challenge.avatar.avatarname} key = {i} /> ); // took out this.fetchChallenges();
                 i++;
             })
-            this.setState({challenges:challengeArray});
+            this.state.challenges = challengeArray;
+            
             
         } catch (e) {
             console.log(e);
@@ -45,7 +46,7 @@ class ChallengeBoard extends React.Component {
             return (
                 <div class="col d-flex justify-content-center">
                     <table>
-                        <tr><td>Champion</td><td>Versus</td><td>Challenger</td></tr>
+                        <thead><tr><th>Champion</th><th>Versus</th><th>Challenger</th></tr></thead>
                         {this.state.challenges}
                     </table>
                 </div>
