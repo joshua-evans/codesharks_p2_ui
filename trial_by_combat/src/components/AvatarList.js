@@ -49,8 +49,22 @@ class AvatarList extends React.Component {
            
             return (
                 <div class="col d-flex justify-content-center">
-                    <table>
-                        <thead><tr><th>Your Avatars</th></tr></thead>
+                    <table class="table">
+                        <thead><tr><th>Your Avatars</th></tr>
+                        <tr>
+                            <th>Name</th>
+                            <th>Str</th>
+                            <th>Dex</th>
+                            <th>Con</th>
+                            <th>Int</th>
+                            <th>Wis</th>
+                            <th>Char</th>
+                            <th>Gold</th>
+                            <th>Health</th>
+                            <th>Max Health</th>
+                        </tr>
+                        </thead>
+                        
                         <tbody>
                             {this.state.avatars}
                         </tbody>
