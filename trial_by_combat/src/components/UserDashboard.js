@@ -1,4 +1,6 @@
 import React from "react";
+import AvatarList from './AvatarList';
+
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -44,10 +46,6 @@ class UserDashboard extends React.Component {
         this.props.parentCallback('WeaponForm');
     }
 
-    clickCreateArmor = () => {
-        this.props.parentCallback('ArmorForm');
-    }
-
     clickCreateHealingPotion = () => {
         this.props.parentCallback('HealingPotionForm');
     }
@@ -55,16 +53,16 @@ class UserDashboard extends React.Component {
     clickCreateLoadout = () => {
         this.props.parentCallback('LoadoutForm');
     }
- 
+
     render() {
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
-
+                <div class="container">
                 <div class="col d-flex justify-content-center">
                     <div>
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <li><a class="nav-link px-2" onClick={this.clickCreateWeapon}>Create Weapon</a></li>
-                            <li><a class="nav-link px-2" onClick={this.clickCreateArmor}>Create Armor</a></li>
+                            <li><a class="nav-link px-2">Create Armor</a></li>
                             <li><a class="nav-link px-2" onClick={this.clickCreateHealingPotion}>Create Potion</a></li>
                             <li><a class="nav-link px-2" onClick={this.clickCreateLoadout}>Create Loadout</a></li>
                         </ul>
@@ -82,7 +80,11 @@ class UserDashboard extends React.Component {
                     </form>
 
                 </div>
-                
+                    <div>
+                        <AvatarList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
+                    </div>
+
+                </div>
             );
         }
 

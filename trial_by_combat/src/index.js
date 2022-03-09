@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import TokenLayer from './TokenLayer.js';
-import './index.css';
+//import './index.css';
 //import reportWebVitals from './reportWebVitals';
 
 
