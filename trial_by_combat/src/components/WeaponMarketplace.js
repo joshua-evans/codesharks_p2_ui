@@ -2,7 +2,7 @@ import React from "react";
 
 import Weapon from "./listings/Weapon";
 
-class WeaponList extends React.Component {
+class WeaponMarketplace extends React.Component {
   constructor(props) {
         super(props) 
         this.state = {value: "",
@@ -44,7 +44,7 @@ class WeaponList extends React.Component {
   }
  
   render() {
-        if (this.props.visibleComponent === 'UserDashboard') {
+        if (this.props.visibleComponent === 'WeaponMarketplace') {
            
             return (
                 <div class="col d-flex justify-content-center">
@@ -69,4 +69,4 @@ class WeaponList extends React.Component {
 
 }
 
-export default WeaponList;
+export default WeaponMarketplace;

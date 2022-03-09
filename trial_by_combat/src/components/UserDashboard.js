@@ -1,6 +1,6 @@
 import React from "react";
 import AvatarList from './AvatarList';
-import WeaponList from './WeaponList';
+import WeaponMarketplace from './WeaponMarketplace';
 import HealingPotionList from './HealingPotionList';
 import ArmorList from './ArmorList';
 
@@ -57,6 +57,11 @@ class UserDashboard extends React.Component {
         this.props.parentCallback('LoadoutForm');
     }
 
+    clickWeaponMarketplace = () => {
+        this.props.parentCallback('WeaponMarketplace');
+        this.setState({visibleComponent:'WeaponMarketplace'});
+    }
+
     render() {
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
@@ -68,6 +73,7 @@ class UserDashboard extends React.Component {
                             <li><a class="nav-link px-2">Create Armor</a></li>
                             <li><a class="nav-link px-2" onClick={this.clickCreateHealingPotion}>Create Potion</a></li>
                             <li><a class="nav-link px-2" onClick={this.clickCreateLoadout}>Create Loadout</a></li>
+                            <li><a class="nav-link px-2" onClick={this.clickWeaponMarketplace}>Weapon Marketplace</a></li>
                         </ul>
                     </div>
                     <hr/>
@@ -85,7 +91,7 @@ class UserDashboard extends React.Component {
                 </div>
                     <div>
                         <AvatarList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
-                        <WeaponList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
+                        <WeaponMarketplace authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
                         <HealingPotionList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
                         <ArmorList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
                     </div>
