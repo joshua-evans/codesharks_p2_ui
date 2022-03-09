@@ -9,7 +9,7 @@ class AvatarList extends React.Component {
             avatars: ["No avatars to display"]
         };
         this.fetchPlayerAvatars = this.fetchPlayerAvatars.bind(this);          
-        
+        this.fetchPlayerAvatars();
     }
 
     
@@ -46,7 +46,6 @@ class AvatarList extends React.Component {
  
   render() {
         if (this.props.visibleComponent === 'UserDashboard') {
-            this.fetchPlayerAvatars();
            
             return (
                 <div class="col d-flex justify-content-center">
