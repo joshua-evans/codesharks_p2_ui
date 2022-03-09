@@ -4,18 +4,17 @@ import Challenge from "../listings/Challenge";
 
 class LoginForm extends React.Component {
   constructor(props) {
-    super(props) // have to call this or this.props will be undefined in the constructor
-                 //  can lead to bugs https://reactjs.org/docs/react-component.html#constructor
+    super(props)
     this.state = {value: "",
         myAvatars: []
     };
-    this.handleChange = this.handleChange.bind(this);  // binds the method to the class
+    this.handleChange = this.handleChange.bind(this);  
     this.handleSubmit = this.handleSubmit.bind(this);
     this.fetchMyAvatars = this.fetchMyAvatars.bind(this);
     this.fetchMyAvatars();
   }
   handleChange(event) {
-      this.setState({value: event.target.value}); // I think this sets the value we grab on submit
+      this.setState({value: event.target.value}); 
   }
 
   fetchMyAvatars() {
@@ -72,10 +71,8 @@ class LoginForm extends React.Component {
                     (data.avatar.player.id===this.props.player.id) ? {avatarname:'Waiting'} : {avatarname:'Accept Challenge'} }
                 />);
             event.preventDefault();
-            //return data;
         } catch (e) {
             console.log(e);
-            //return e;
         }  
     })();  
   }
@@ -84,15 +81,13 @@ class LoginForm extends React.Component {
         return (
             <div class="col d-flex justify-content-center">
                 <p>{this.state.postId}</p>
-                <form class="login_form" method="POST" action="javascript:void(0);" onSubmit={this.handleSubmit}>
-                    <div class="form-group">                    
+                <form class="login_form" method="POST" action="javascript:void(0);" onSubmit={this.handleSubmit}>              
                         <select
                             name = 'avatar_id'
                             onClick = {this.fetchMyAvatars}
                             onChange = {this.handleInputchange}>
                                 {this.state.myAvatars}
                         </select>
-                    </div>
                     <input type="submit"  value="Create Challenge" />
                 </form>
             </div>

@@ -86,13 +86,18 @@ class ChallengeBoard extends React.Component {
     if (this.props.visibleComponent === 'ChallengeBoard') {
         return (
             <div class="col d-flex justify-content-center">
-                {createForm}
-                <br/>
                 <table class="table">
-                    <tr onClick={this.createChallenge}>
-                        <th>Champion</th><th>Versus</th><th>Challenger</th>
-                    </tr>
+                <thead onClick={this.updateChallengeList}><tr><th>Challenge Board</th></tr>
+                        <tr>
+                            <th>Champion</th>
+                            <th>versus</th>
+                            <th>Challenger</th>
+                        </tr>
+                        </thead>
+                    <tbody>
+                        <tr>{createForm}</tr>
                     {this.state.challenges}
+                    </tbody>
                 </table>
             </div>
             
