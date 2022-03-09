@@ -29,7 +29,7 @@ class AvatarList extends React.Component {
         const data = await fetchResponse.json();
         let i = 0;
         data.forEach((avatar) => {
-            avatarArray.push( <Avatar avatarName = {avatar.avatarname} strength = {avatar.strength} dexterity = {avatar.dexterity} 
+            avatarArray.push( <Avatar parentCallback = {this.props.parentCallback} id = {avatar.id} avatarName = {avatar.avatarname} strength = {avatar.strength} dexterity = {avatar.dexterity} 
                 constitution = {avatar.constitution} intelligence = {avatar.intelligence} wisdom = {avatar.wisdom} charisma = {avatar.charisma} 
                 gold = {avatar.gold} currentHealth = {avatar.currentHealth} maximumHealth = {avatar.maximumHealth} key = {i} /> );
             i++;
@@ -37,16 +37,17 @@ class AvatarList extends React.Component {
         })
         
         this.setState({avatars:avatarArray});
-        
 
+          
     } catch (e) {
         console.log(e);
-    }     
+    }       
   }
- 
+  
+
+
   render() {
-        if (this.props.visibleComponent === 'UserDashboard') {
-           
+        if (this.props.visComponent === 'AvatarList') {
             return (
                 <div class="col d-flex justify-content-center">
                     <table class="table">
