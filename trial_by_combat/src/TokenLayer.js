@@ -5,6 +5,7 @@ import './login_form.css';
 import LoginForm from './components/forms/LoginForm';
 import RegistrationForm from './components/forms/RegistrationForm';
 import UserDashboard from './components/UserDashboard';
+import ChallengeBoard from './components/ChallengeBoard';
 import Header from './Header';
 import WeaponForm from './components/forms/WeaponForm';
 import HealingPotionForm from './components/forms/HealingPotionForm';
@@ -48,6 +49,10 @@ class TokenLayer extends React.Component {
         this.setState({visibleComponent:"UserDashboard"});
     }
 
+    clickChallengeBoard = () => {
+        this.setState({visibleComponent:"ChallengeBoard"});
+    }
+
     dashboardRedirect = (childData) => {
         this.setState({visibleComponent:childData});
     }
@@ -82,7 +87,9 @@ class TokenLayer extends React.Component {
                     registerCallback = {this.clickRegister}    
                     logoutCallback = {this.clickLogout}
                     dashboardCallback = {this.clickDashboard}
+                    challengeCallback = {this.clickChallengeBoard}
                 /> 
+                <ChallengeBoard authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent}/>
                 <LoginForm server = {this.state.server} parentCallback = {this.handleLogin} visibleComponent = {this.state.visibleComponent} />  
                 <RegistrationForm server = {this.state.server} parentCallback = {this.handleRegistration} visibleComponent = {this.state.visibleComponent} />
                 <UserDashboard authToken = {this.state.token} server = {this.state.server} parentCallback = {this.dashboardRedirect} visibleComponent = {this.state.visibleComponent} />
