@@ -8,7 +8,6 @@ class Challenge extends React.Component {
     render() {
         return (
             <tr>
-                {console.log('ok')}
                 <td>{this.props.avatar}</td>
                 <td></td>
                 <td>{this.props.challenger}</td>
