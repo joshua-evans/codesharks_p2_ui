@@ -59,7 +59,7 @@ class AvatarList extends React.Component {
                             <th>Con</th>
                             <th>Int</th>
                             <th>Wis</th>
-                            <th>Char</th>
+                            <th>Cha</th>
                             <th>Gold</th>
                             <th>Health</th>
                             <th>Max Health</th>
