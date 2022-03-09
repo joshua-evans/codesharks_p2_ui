@@ -1,6 +1,6 @@
 import React from "react";
 
-class Weapon extends React.Component {
+class HealingPotion extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -8,14 +8,14 @@ class Weapon extends React.Component {
     render() {
         return (
             <tr>
-                <td>{this.props.weaponName}</td>
+                <td>{this.props.potionName}</td>
                 <td>{this.props.description}</td>
-                <td>{this.props.damageDie}</td>
-                <td>{this.props.damageBonus}</td>
+                <td>{this.props.healingDie}</td>
+                <td>{this.props.healingBonus}</td>
                 <td>{this.props.price}</td>
             </tr>
         )
     }
 }
 
-export default Weapon
+export default HealingPotion

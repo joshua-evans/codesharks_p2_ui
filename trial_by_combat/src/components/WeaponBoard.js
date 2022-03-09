@@ -2,17 +2,17 @@ import React from "react";
 
 import Weapon from "./listings/Weapon";
 
-class ChallengeBoard extends React.Component {
+class WeaponBoard extends React.Component {
   constructor(props) {
     super(props) 
     this.state = {value: "",
-        challenges: []
+        weapons: []
     };
-    this.fetchChallenges();
+    this.fetchWeapons();
   }
 
-  fetchChallenges() {
-    let challengeArray = [];
+  fetchWeapons() {
+    let weaponArray = [];
 
     (async () => {
         const settings = {
@@ -24,11 +24,11 @@ class ChallengeBoard extends React.Component {
             }
         };
         try {
-            const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/challenge/all`, settings);
+            const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/weapon/all`, settings);
             const data = await fetchResponse.json();
             let i = 0;
-            data.forEach((challenge) => {
-                challengeArray.push( <Challenge avatar = {challenge.avatar.avatarname} challenger = {challenge.challenger.avatarname} key = {i} /> );
+            data.forEach((weapon) => {
+                weaponArray.push(<Weapon weapon = {weapon.avatar.avatarname} challenger = {challenge.challenger.avatarname} key = {i} /> );
                 i++;
             })
             this.setState({challenges:challengeArray});

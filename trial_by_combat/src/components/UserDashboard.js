@@ -1,5 +1,8 @@
 import React from "react";
 import AvatarList from './AvatarList';
+import WeaponList from './WeaponList';
+import HealingPotionList from './HealingPotionList';
+import ArmorList from './ArmorList';
 
 
 class UserDashboard extends React.Component {
@@ -82,6 +85,9 @@ class UserDashboard extends React.Component {
                 </div>
                     <div>
                         <AvatarList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
+                        <WeaponList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
+                        <HealingPotionList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
+                        <ArmorList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
                     </div>
 
                 </div>
