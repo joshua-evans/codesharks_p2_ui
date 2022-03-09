@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
 import AvatarList from './AvatarList';
-
+import AvatarDashboard from './AvatarDashboard';
 
 class UserDashboard extends React.Component {
   constructor(props) {
     super(props) 
-    this.state = {value: ""};
+    this.state = {value: "",
+                  visComponent:"AvatarList"
+                };
     this.handleChange = this.handleChange.bind(this);  
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -54,6 +56,11 @@ class UserDashboard extends React.Component {
         this.props.parentCallback('LoadoutForm');
     }
 
+    clickSelectAvater = (childData) => {
+        this.setState({visComponent:"AvatarDashboard"})
+        this.setState({selecteAvatar:childData})
+    }
+
     render() {
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
@@ -81,7 +88,8 @@ class UserDashboard extends React.Component {
 
                 </div>
                     <div>
-                        <AvatarList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
+                        <AvatarList parentCallback = {this.clickSelectAvater} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
+                        <AvatarDashboard authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                     </div>
 
                 </div>
