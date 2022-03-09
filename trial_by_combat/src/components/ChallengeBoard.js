@@ -1,6 +1,7 @@
 import React from "react";
 
 import Challenge from "./listings/Challenge";
+import CreateChallengeForm from "./forms/CreateChallengeForm";
 
 class ChallengeBoard extends React.Component {
   constructor(props) {
@@ -8,9 +9,15 @@ class ChallengeBoard extends React.Component {
     this.state = {value: "",
         challenges: []
     };
+    this.fetchChallenges = this.fetchChallenges.bind(this);
+    this.updateChallengeList = this.updateChallengeList.bind(this);
+    this.createChallenge = this.createChallenge.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.fetchChallenges();
   }
-
+  handleChange(event) {
+    this.setState({value: event.target.value}); 
+}
   fetchChallenges() {
     let challengeArray = [];
 
@@ -28,37 +35,75 @@ class ChallengeBoard extends React.Component {
             const data = await fetchResponse.json();
             let i = 0;
             data.forEach((challenge) => {
-                challengeArray.push( <Challenge avatar = {challenge.avatar.avatarname} key = {i} /> ); // took out this.fetchChallenges();
+                challengeArray.push( <Challenge 
+                    avatar = {(challenge.avatar) ? challenge.avatar : '' } 
+                    challenger = {(challenge.challenger) ? challenge.challenger : 
+                        (challenge.avatar.player.id===this.props.player.id) ? {avatarname:'Waiting'} : {avatarname:'Accept Challenge'} }
+                    key = {i} /> );
                 i++;
             })
-            this.state.challenges = challengeArray;
-            
+            this.setState({challenges:challengeArray});
             
         } catch (e) {
             console.log(e);
         }  
     })();
   }
+
+  updateChallengeList() {
+      this.fetchChallenges();
+      this.forceUpdate();
+  }
+
+  createChallenge(data) {
+      this.state.challenges.push(data);
+      this.forceUpdate();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+      if (nextProps.visibleComponent != this.props.visibleComponent
+        || nextProps.authToken != this.props.authToken
+        ) {
+          return true;
+      }
+      return false;
+  }
  
   render() {
-       
-        if (this.props.visibleComponent === 'ChallengeBoard') {
-            return (
-                <div class="col d-flex justify-content-center">
-                    <table>
-                        <thead><tr><th>Champion</th><th>Versus</th><th>Challenger</th></tr></thead>
-                        {this.state.challenges}
-                    </table>
-                </div>
-                
-            );
-        }
+    let createForm = <></>;
+    
+    if (this.props.authToken) {
+        createForm = <CreateChallengeForm 
+            parentCallback = {this.createChallenge} 
+            server = {this.props.server} 
+            authToken = {this.props.authToken} 
+            player = {this.props.player} 
+        />;
+    }
+    
+    this.fetchChallenges();
 
-        else {
-            return (
-                <div hidden></div>
-            );
-        }
+    if (this.props.visibleComponent === 'ChallengeBoard') {
+        return (
+            <div class="col d-flex justify-content-center">
+                {createForm}
+                <br/>
+                <table class="table">
+                    <tr onClick={this.createChallenge}>
+                        <th>Champion</th><th>Versus</th><th>Challenger</th>
+                    </tr>
+                    {this.state.challenges}
+                </table>
+            </div>
+            
+        );
+    }
+
+    else {
+        return (
+            <div hidden></div>
+        );
+    }
     }
 
 }
