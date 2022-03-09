@@ -8,6 +8,7 @@ import UserDashboard from './components/UserDashboard';
 import Header from './Header';
 import WeaponForm from './components/forms/WeaponForm';
 import HealingPotionForm from './components/forms/HealingPotionForm';
+import LoadoutForm from './components/forms/LoadoutForm';
 
 class TokenLayer extends React.Component {
     
@@ -88,6 +89,7 @@ class TokenLayer extends React.Component {
                 <UserDashboard authToken = {this.state.token} server = {this.state.server} parentCallback = {this.dashboardRedirect} visibleComponent = {this.state.visibleComponent} />
                 <WeaponForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
                 <HealingPotionForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
+                <LoadoutForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
             </>
         );
     }
