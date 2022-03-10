@@ -62,7 +62,7 @@ class LoadoutForm extends React.Component {
                                 type= 'text'
                                 onChange = {this.handleInputchange} />
                         </div>
-                        <input type="submit"  value="Loadout" />
+                        <input type="submit"  value="Create Loadout" />
                     </form>
                 </div>
                 

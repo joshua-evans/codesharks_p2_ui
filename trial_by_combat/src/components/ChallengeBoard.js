@@ -139,22 +139,24 @@ fetchMyAvatars() {
 
     if (this.props.visibleComponent === 'ChallengeBoard') {
         return (
-            <div class="col d-flex justify-content-center">
-                <table class="table">
-                <thead onClick={this.updateChallengeList}><tr><th>Challenge Board</th></tr>
-                        <tr>
-                            <th>Champion</th>
-                            <th>versus</th>
-                            <th>Challenger</th>
-                        </tr>
-                        </thead>
-                    <tbody>
-                        <tr onClick = {this.updateAvatars}>{createForm}</tr>
-                    {this.state.challenges}
-                    </tbody>
-                </table>
+            <div class="container">
+                <div onClick = {this.updateAvatars}>{createForm}</div>
+
+                <div class="col d-flex justify-content-center">
+                    <table class="table">
+                    <thead onClick={this.updateChallengeList}><tr><th>Challenge Board</th></tr>
+                            <tr>
+                                <th>Champion</th>
+                                <th>versus</th>
+                                <th>Challenger</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                        {this.state.challenges}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
         );
     }
 
