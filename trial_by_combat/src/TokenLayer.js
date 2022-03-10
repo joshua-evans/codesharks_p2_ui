@@ -3,13 +3,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './login_form.css';
 
 import Header from './Header';
+import Footer from './Footer';
 
 import LoginForm from './components/forms/LoginForm';
 import RegistrationForm from './components/forms/RegistrationForm';
 import UserDashboard from './components/UserDashboard';
-import AvatarDashboard from "./components/AvatarDashboard";
 import ChallengeBoard from './components/ChallengeBoard';
 import WeaponForm from './components/forms/WeaponForm';
+import ArmorForm from './components/forms/ArmorForm';
 import HealingPotionForm from './components/forms/HealingPotionForm';
 import LoadoutForm from './components/forms/LoadoutForm';
 
@@ -21,7 +22,7 @@ class TokenLayer extends React.Component {
         userid:"",
         token:"",
         visibleComponent:"LoginForm",
-        server:"http://localhost:3000"    
+        server:"https://trial-by-combat.azurewebsites.net"    
     }
 
     handleLogin = (childData) => {
@@ -100,6 +101,8 @@ class TokenLayer extends React.Component {
                 <WeaponForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
                 <HealingPotionForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
                 <LoadoutForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
+                <ArmorForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
+                <Footer />
             </>
         );
     }

@@ -8,7 +8,7 @@ class Avatar extends React.Component {
     }
 
     selectAvatar = () => {
-        this.props.parentCallback(this.props.id);
+        this.props.parentCallback(this);
     }
 
     render() {
