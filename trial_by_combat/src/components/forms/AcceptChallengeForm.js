@@ -32,7 +32,7 @@ class AcceptChallengeForm extends React.Component {
         try {
             const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/challenge`, settings);
             const data = await fetchResponse.json();
-            //this.props.parentCallback(data.challenger);
+            this.props.parentCallback(data.challenger);
             event.preventDefault();
         } catch (e) {
             console.log(e);

@@ -41,7 +41,6 @@ fetchMyAvatars() {
         };
         try {
             let url = `${this.props.server}/trial-by-combat/avatar/player/?id=${this.props.player.id}`;
-            console.log(url);
             const fetchResponse = await fetch(url, settings);
             const data = await fetchResponse.json();
             let i = 0;
@@ -74,13 +73,13 @@ fetchMyAvatars() {
         try {
             const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/challenge/all`, settings);
             const data = await fetchResponse.json();
+            let i = 0;
             data.forEach((challenge) => {
-                console.log(challenge);
                 challengeArray.push( <Challenge 
                     avatar = {(challenge.avatar) ? challenge.avatar : '' } 
                     challenger = {(challenge.challenger) ? challenge.challenger : 
                         (challenge.avatar.player.id===this.props.player.id) ? {avatarname:'Waiting'} : {avatarname:'Open Challenge'} }
-                    key = {challenge.id} 
+                    key = {i} 
                     isOpen = {(challenge.challenger) ? false : true}
                     id = {challenge.id} 
                     server = {this.props.server} 
@@ -88,6 +87,7 @@ fetchMyAvatars() {
                     player_id = {this.props.player.id}
                     avatars = {this.state.myAvatars}
                 /> );
+                i++;
             })
             this.setState({challenges:challengeArray});
             
