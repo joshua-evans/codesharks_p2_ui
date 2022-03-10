@@ -1,6 +1,10 @@
 import React from 'react';
 import AvatarList from './AvatarList';
 import AvatarDashboard from './AvatarDashboard';
+import WeaponMarketplace from './WeaponMarketplace';
+import HealingPotionList from './HealingPotionList';
+import ArmorList from './ArmorList';
+
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -66,10 +70,21 @@ class UserDashboard extends React.Component {
         this.setState({selectedAvatar:childData})
     }
 
-    returnToAvatarList = (shildData) => {
+    returnToAvatarList = (childData) => {
         this.setState({visComponent:"AvatarList"})
         this.setState({selectedAvatar:""})
+    }
 
+    clickWeaponMarketplace = () => {
+        this.setState({visComponent:"WeaponMarketplace"})
+    }
+
+    clickHealingPotionMarketplace = () => {
+        this.setState({visComponent:"HealingPotionList"})
+    }
+
+    clickArmorMarketplace = () => {
+        this.setState({visComponent:"ArmorList"})
     }
 
     render() {
@@ -100,7 +115,13 @@ class UserDashboard extends React.Component {
                 </div>
                     <div>
                         <AvatarList parentCallback = {this.clickSelectAvater} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
-                        <AvatarDashboard  parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
+                        <AvatarDashboard  parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} 
+                        parentCallback2 = {this.clickWeaponMarketplace}
+                        parentCallback3 = {this.clickHealingPotionMarketplace}
+                        parentCallback4 = {this.clickArmorMarketplace}/>
+                        <WeaponMarketplace parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
+                        <HealingPotionList parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
+                        <ArmorList parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                     </div>
 
                 </div>

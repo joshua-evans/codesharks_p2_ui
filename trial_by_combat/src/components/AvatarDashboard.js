@@ -10,7 +10,19 @@ class AvatarDashboard extends React.Component {
     } 
 
     returnToAvatarList = () => {
-        this.props.parentCallback("AvatarList");
+        this.props.parentCallback('AvatarList');
+    }
+
+    clickWeaponMarketplace = () => {
+        this.props.parentCallback2('WeaponMarketplace');
+    }
+
+    clickHealingPotionMarketplace = () => {
+        this.props.parentCallback3('HealingPotionList');
+    }
+
+    clickArmorMarketplace = () => {
+        this.props.parentCallback4('ArmorList');
     }
 
   render() {
@@ -38,7 +50,10 @@ class AvatarDashboard extends React.Component {
                                 <td>{this.props.selectedAvatar.props.gold}</td>
                                 <td>{this.props.selectedAvatar.props.currentHealth}</td>
                                 <td>{this.props.selectedAvatar.props.maximumHealth}</td>
-                                <td><a class="nav-link px-2" onClick = {this.returnToAvatarList}>Return to AvatarList</a></td>
+                                <td><a id='AvatarListButton' class="nav-link px-2" onClick = {this.returnToAvatarList}>Return to AvatarList</a></td>
+                                <li><a id='WeaponMarketplaceButton' class="nav-link px-2" onClick={this.clickWeaponMarketplace}>Weapon Marketplace</a></li>
+                                <li><a id='HealingPotionMarketplaceButton' class="nav-link px-2" onClick={this.clickHealingPotionMarketplace}>Healing Potion Marketplace</a></li>
+                                <li><a id='ArmorMarketplaceButton' class="nav-link px-2" onClick={this.clickArmorMarketplace}>Armor Marketplace</a></li>
                             </tr>
                         </tbody>
                        

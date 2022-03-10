@@ -2,10 +2,10 @@
 //import './weapon_form.css';
 import React from "react";
 
-class LoadoutForm extends React.Component {
+class PurchaseWeaponsForm extends React.Component {
   constructor(props) {
     super(props) 
-    this.state = {value: ""};
+    this.state = {value: "",};
     this.handleChange = this.handleChange.bind(this);  
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -28,8 +28,13 @@ class LoadoutForm extends React.Component {
             })
         };
         try {
-            const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/loadout`, settings);
+            const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/weapon/all`, settings);
             const data = await fetchResponse.json();
+            let i = 0;
+            data.forEach((weapon) => {
+                challengeArray.push( <Challenge avatar = {challenge.avatar.avatarname} challenger = {challenge.challenger.avatarname} key = {i} /> );
+                i++;
+            })
             let d = data.description,
                 n = data.name;
             alert(`Successfully created a loadout called ${n}, described as ${d} which includes: `);
@@ -43,7 +48,7 @@ class LoadoutForm extends React.Component {
   }
  
     render() {
-        if (this.props.visibleComponent === 'LoadoutForm') {
+        if (this.props.visibleComponent === 'PurchaseWeaponsForm') {
             return (
                 <div class="col d-flex justify-content-center">
                     <p>{this.state.postId}</p>
@@ -62,7 +67,7 @@ class LoadoutForm extends React.Component {
                                 type= 'text'
                                 onChange = {this.handleInputchange} />
                         </div>
-                        <input type="submit"  value="Create Loadout" />
+                        <input type="submit"  value="Loadout" />
                     </form>
                 </div>
                 
