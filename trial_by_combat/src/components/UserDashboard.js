@@ -1,13 +1,6 @@
 import React from 'react';
 import AvatarList from './AvatarList';
-<<<<<<< HEAD
-import WeaponMarketplace from './WeaponMarketplace';
-import HealingPotionList from './HealingPotionList';
-import ArmorList from './ArmorList';
-
-=======
 import AvatarDashboard from './AvatarDashboard';
->>>>>>> a6931b5ff12cf6b00e84d8b12aec6a456c526af0
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -63,15 +56,9 @@ class UserDashboard extends React.Component {
         this.props.parentCallback('LoadoutForm');
     }
 
-<<<<<<< HEAD
-    clickWeaponMarketplace = () => {
-        this.props.parentCallback('WeaponMarketplace');
-        this.setState({visibleComponent:'WeaponMarketplace'});
-=======
     clickSelectAvater = (childData) => {
         this.setState({visComponent:"AvatarDashboard"})
         this.setState({selecteAvatar:childData})
->>>>>>> a6931b5ff12cf6b00e84d8b12aec6a456c526af0
     }
 
     render() {
@@ -85,7 +72,6 @@ class UserDashboard extends React.Component {
                             <li><a class="nav-link px-2">Create Armor</a></li>
                             <li><a class="nav-link px-2" onClick={this.clickCreateHealingPotion}>Create Potion</a></li>
                             <li><a class="nav-link px-2" onClick={this.clickCreateLoadout}>Create Loadout</a></li>
-                            <li><a class="nav-link px-2" onClick={this.clickWeaponMarketplace}>Weapon Marketplace</a></li>
                         </ul>
                     </div>
                     <hr/>
@@ -102,15 +88,8 @@ class UserDashboard extends React.Component {
 
                 </div>
                     <div>
-<<<<<<< HEAD
-                        <AvatarList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
-                        <WeaponMarketplace authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
-                        <HealingPotionList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
-                        <ArmorList authToken = {this.props.authToken} server = {this.props.server} visibleComponent = {this.props.visibleComponent} />
-=======
                         <AvatarList parentCallback = {this.clickSelectAvater} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                         <AvatarDashboard authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
->>>>>>> a6931b5ff12cf6b00e84d8b12aec6a456c526af0
                     </div>
 
                 </div>
