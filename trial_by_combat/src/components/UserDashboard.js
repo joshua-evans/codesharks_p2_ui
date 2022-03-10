@@ -4,6 +4,7 @@ import AvatarDashboard from './AvatarDashboard';
 import WeaponMarketplace from './WeaponMarketplace';
 import HealingPotionList from './HealingPotionList';
 import ArmorList from './ArmorList';
+import RandomItemsList from './RandomItemsList';
 
 
 class UserDashboard extends React.Component {
@@ -122,6 +123,7 @@ class UserDashboard extends React.Component {
                         <WeaponMarketplace parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                         <HealingPotionList parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                         <ArmorList parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
+                        <RandomItemsList selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                     </div>
 
                 </div>
