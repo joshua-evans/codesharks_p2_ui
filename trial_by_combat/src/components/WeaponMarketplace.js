@@ -42,9 +42,13 @@ class WeaponMarketplace extends React.Component {
         console.log(e);
     }     
   }
+
+  returnToAvatarList = () => {
+    this.props.parentCallback('AvatarList');
+}
  
   render() {
-        if (this.props.visibleComponent === 'WeaponMarketplace') {
+        if (this.props.visComponent === 'WeaponMarketplace') {
            
             return (
                 <div class="col d-flex justify-content-center">
@@ -56,6 +60,7 @@ class WeaponMarketplace extends React.Component {
                             {this.state.weapons}
                         </tbody>
                     </table>
+                    <a onClick = {this.returnToAvatarList}>Return to Avatar List</a>
                 </div>
                 
             );

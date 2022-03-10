@@ -42,9 +42,13 @@ class ArmorList extends React.Component {
         console.log(e);
     }     
   }
+
+  returnToAvatarList = () => {
+    this.props.parentCallback('AvatarList');
+}
  
   render() {
-        if (this.props.visibleComponent === 'UserDashboard') {
+        if (this.props.visComponent === 'ArmorList') {
            
             return (
                 <div class="col d-flex justify-content-center">
@@ -56,6 +60,7 @@ class ArmorList extends React.Component {
                             {this.state.armor}
                         </tbody>
                     </table>
+                    <a onClick = {this.returnToAvatarList}>Return to Avatar List</a>
                 </div>
                 
             );
