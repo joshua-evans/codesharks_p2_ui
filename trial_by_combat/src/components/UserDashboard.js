@@ -6,7 +6,8 @@ class UserDashboard extends React.Component {
   constructor(props) {
     super(props) 
     this.state = {value: "",
-                  visComponent:"AvatarList"
+                  visComponent:"AvatarList",
+                  selectedAvatar:""
                 };
     this.handleChange = this.handleChange.bind(this);  
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,7 +59,13 @@ class UserDashboard extends React.Component {
 
     clickSelectAvater = (childData) => {
         this.setState({visComponent:"AvatarDashboard"})
-        this.setState({selecteAvatar:childData})
+        this.setState({selectedAvatar:childData})
+    }
+
+    returnToAvatarList = (shildData) => {
+        this.setState({visComponent:"AvatarList"})
+        this.setState({selectedAvatar:""})
+
     }
 
     render() {
@@ -89,7 +96,7 @@ class UserDashboard extends React.Component {
                 </div>
                     <div>
                         <AvatarList parentCallback = {this.clickSelectAvater} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
-                        <AvatarDashboard authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
+                        <AvatarDashboard  parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                     </div>
 
                 </div>
