@@ -2,22 +2,63 @@ import React from "react";
 
 import Challenge from "./listings/Challenge";
 import CreateChallengeForm from "./forms/CreateChallengeForm";
+import ChallengeAvatar from "./listings/ChallengeAvatar";
 
 class ChallengeBoard extends React.Component {
   constructor(props) {
     super(props) 
     this.state = {value: "",
-        challenges: []
+        challenges: [],
+        myAvatars: []
     };
     this.fetchChallenges = this.fetchChallenges.bind(this);
     this.updateChallengeList = this.updateChallengeList.bind(this);
+    this.updateAvatars = this.updateAvatars.bind(this);
     this.createChallenge = this.createChallenge.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.fetchChallenges();
+    this.fetchMyAvatars = this.fetchMyAvatars.bind(this);
+    this.fetchMyAvatars();
   }
   handleChange(event) {
     this.setState({value: event.target.value}); 
 }
+
+fetchMyAvatars() {
+    let avatarArray = [];
+
+    if (!this.props.authToken)
+        return;
+
+    (async () => {
+        const settings = {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.props.authToken}`
+            }
+        };
+        try {
+            let url = `${this.props.server}/trial-by-combat/avatar/player/?id=${this.props.player.id}`;
+            console.log(url);
+            const fetchResponse = await fetch(url, settings);
+            const data = await fetchResponse.json();
+            let i = 0;
+            data.forEach((avatar) => {
+                avatarArray.push( <ChallengeAvatar 
+                    avatar = {avatar}
+                    key = {i} /> );
+                i++;
+            })
+            this.setState({myAvatars:avatarArray});
+            
+        } catch (e) {
+            console.log(e);
+        }  
+    })();
+  }
+
   fetchChallenges() {
     let challengeArray = [];
 
@@ -33,14 +74,20 @@ class ChallengeBoard extends React.Component {
         try {
             const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/challenge/all`, settings);
             const data = await fetchResponse.json();
-            let i = 0;
             data.forEach((challenge) => {
+                console.log(challenge);
                 challengeArray.push( <Challenge 
                     avatar = {(challenge.avatar) ? challenge.avatar : '' } 
                     challenger = {(challenge.challenger) ? challenge.challenger : 
-                        (challenge.avatar.player.id===this.props.player.id) ? {avatarname:'Waiting'} : {avatarname:'Accept Challenge'} }
-                    key = {i} /> );
-                i++;
+                        (challenge.avatar.player.id===this.props.player.id) ? {avatarname:'Waiting'} : {avatarname:'Open Challenge'} }
+                    key = {challenge.id} 
+                    isOpen = {(challenge.challenger) ? false : true}
+                    id = {challenge.id} 
+                    server = {this.props.server} 
+                    authToken = {this.props.authToken}  
+                    player_id = {this.props.player.id}
+                    avatars = {this.state.myAvatars}
+                /> );
             })
             this.setState({challenges:challengeArray});
             
@@ -53,6 +100,11 @@ class ChallengeBoard extends React.Component {
   updateChallengeList() {
       this.fetchChallenges();
       this.forceUpdate();
+  }
+
+  updateAvatars() {
+    this.fetchMyAvatars();
+    this.forceUpdate();
   }
 
   createChallenge(data) {
@@ -78,10 +130,12 @@ class ChallengeBoard extends React.Component {
             server = {this.props.server} 
             authToken = {this.props.authToken} 
             player = {this.props.player} 
+            avatars = {this.state.myAvatars}
         />;
     }
     
     this.fetchChallenges();
+    this.fetchMyAvatars();
 
     if (this.props.visibleComponent === 'ChallengeBoard') {
         return (
@@ -95,7 +149,7 @@ class ChallengeBoard extends React.Component {
                         </tr>
                         </thead>
                     <tbody>
-                        <tr>{createForm}</tr>
+                        <tr onClick = {this.updateAvatars}>{createForm}</tr>
                     {this.state.challenges}
                     </tbody>
                 </table>
