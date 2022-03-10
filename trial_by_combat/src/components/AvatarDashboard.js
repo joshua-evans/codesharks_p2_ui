@@ -8,6 +8,11 @@ class AvatarDashboard extends React.Component {
         this.state = {value: "",
         };
     } 
+
+    returnToAvatarList = () => {
+        this.props.parentCallback("AvatarList");
+    }
+
   render() {
         if (this.props.visComponent === 'AvatarDashboard') {
            
@@ -18,7 +23,7 @@ class AvatarDashboard extends React.Component {
 
                     <thead>
                             <tr>
-                                <th>Name</th><th>Str</th><th>Dex</th><th>Con</th><th>Int</th><th>Wis</th><th>Cha</th><th>Gold</th><th>Health</th><th>Max Health</th>
+                                <th>Name</th><th>Str</th><th>Dex</th><th>Con</th><th>Int</th><th>Wis</th><th>Cha</th><th>Gold</th><th>Health</th><th>Max Health</th><th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,11 +38,9 @@ class AvatarDashboard extends React.Component {
                                 <td>{this.props.selectedAvatar.props.gold}</td>
                                 <td>{this.props.selectedAvatar.props.currentHealth}</td>
                                 <td>{this.props.selectedAvatar.props.maximumHealth}</td>
+                                <td><a class="nav-link px-2" onClick = {this.returnToAvatarList}>Return to AvatarList</a></td>
                             </tr>
                         </tbody>
-
-
-
                        
                     </table>
                 </div>           

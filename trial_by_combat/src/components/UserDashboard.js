@@ -62,6 +62,12 @@ class UserDashboard extends React.Component {
         this.setState({selectedAvatar:childData})
     }
 
+    returnToAvatarList = (shildData) => {
+        this.setState({visComponent:"AvatarList"})
+        this.setState({selectedAvatar:""})
+
+    }
+
     render() {
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
@@ -90,7 +96,7 @@ class UserDashboard extends React.Component {
                 </div>
                     <div>
                         <AvatarList parentCallback = {this.clickSelectAvater} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
-                        <AvatarDashboard selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
+                        <AvatarDashboard  parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                     </div>
 
                 </div>
