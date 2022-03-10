@@ -62,7 +62,6 @@ class WeaponMarketplace extends React.Component {
                     </table>
                     <a onClick = {this.returnToAvatarList}>Return to Avatar List</a>
                 </div>
-                
             );
         }
         else {
