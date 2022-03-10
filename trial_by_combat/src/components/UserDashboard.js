@@ -4,6 +4,7 @@ import AvatarDashboard from './AvatarDashboard';
 import WeaponMarketplace from './WeaponMarketplace';
 import HealingPotionList from './HealingPotionList';
 import ArmorList from './ArmorList';
+import Weapon from './listings/Weapon';
 
 
 
@@ -88,6 +89,12 @@ class UserDashboard extends React.Component {
         this.setState({visComponent:"ArmorList"})
     }
 
+    // clickPurchaseWeapon = (childData) => {
+    //     this.setState({visComponent:"WeaponMarketplace"})
+    //     this.setState({selectedAvatar:childData})
+    // }
+
+    
     render() {
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
@@ -119,7 +126,9 @@ class UserDashboard extends React.Component {
                         <AvatarDashboard  parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} 
                         parentCallback2 = {this.clickWeaponMarketplace}
                         parentCallback3 = {this.clickHealingPotionMarketplace}
-                        parentCallback4 = {this.clickArmorMarketplace}/>
+                        parentCallback4 = {this.clickArmorMarketplace}
+                        // parentCallback5 = {this.clickPurchaseWeapon}
+                        />
                         <WeaponMarketplace parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                         <HealingPotionList parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                         <ArmorList parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />

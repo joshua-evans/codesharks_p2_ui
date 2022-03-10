@@ -7,6 +7,7 @@ class HealingPotion extends React.Component {
 
     purchasePotion = () => {
 
+    if(this.props.avatar.props.gold >= this.props.price){
         switch(this.props.potionName.charAt(0)){
             case 'A':
             case 'a':
@@ -23,6 +24,9 @@ class HealingPotion extends React.Component {
             default:
                 alert(`Successfully purchased a ${this.props.potionName} for ${this.props.price} gold`);
         }
+    } else{
+        alert(`You do not have enough gold to purchase this Healing Potion`);
+   }
 }
 
     render() {

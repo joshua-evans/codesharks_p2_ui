@@ -1,7 +1,7 @@
 import React from "react";
 import Challenge from "../listings/Challenge";
 
-class LoginForm extends React.Component {
+class CreateChallengeForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {value: ""
@@ -65,4 +65,4 @@ class LoginForm extends React.Component {
 
 }
 
-export default LoginForm;
+export default CreateChallengeForm;

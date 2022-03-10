@@ -10,6 +10,7 @@ class WeaponMarketplace extends React.Component {
         };
         this.fetchWeapons = this.fetchWeapons.bind(this);          
         this.fetchWeapons();
+
     }
 
     
@@ -30,7 +31,7 @@ class WeaponMarketplace extends React.Component {
         let i = 0;
         data.forEach((weapon) => {
             weaponArray.push( <Weapon weaponName = {weapon.itemname} description = {weapon.description} damageDie = {weapon.damageDie} 
-                damageBonus = {weapon.damageBonus} price = {weapon.price} key = {i} /> );
+                damageBonus = {weapon.damageBonus} price = {weapon.price} avatar = {this.props.selectedAvatar} key = {i} /> );
             i++;
           
         })
@@ -46,7 +47,7 @@ class WeaponMarketplace extends React.Component {
   returnToAvatarList = () => {
     this.props.parentCallback('AvatarList');
 }
- 
+
   render() {
         if (this.props.visComponent === 'WeaponMarketplace') {
            
