@@ -22,7 +22,7 @@ class TokenLayer extends React.Component {
         userid:"",
         token:"",
         visibleComponent:"LoginForm",
-        server:"http://localhost:3000"    
+        server:"https://trial-by-combat.azurewebsites.net"    
     }
 
     handleLogin = (childData) => {
