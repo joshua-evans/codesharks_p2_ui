@@ -9,7 +9,7 @@ class Weapon extends React.Component {
     }
 
     purchaseWeapon = () => {
-       if(this.props.avatar.props.gold >= this.props.price){
+       if(this.props.selectedAvatar.props.gold >= this.props.price){
             let avatar_id = this.props.avatar.props.id;
             let item_id = this.props.id;
             (async () => {
