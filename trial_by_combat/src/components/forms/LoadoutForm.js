@@ -32,9 +32,14 @@ class LoadoutForm extends React.Component {
             const data = await fetchResponse.json();
             let d = data.description,
                 n = data.name;
-            alert(`Successfully created a loadout called ${n}, described as ${d} which includes: `);
-            event.preventDefault();
-            //return data;
+            if(d === undefined){
+                alert(`A Loadout with this name already exists`);
+            }else{
+                alert(`Successfully created a loadout called ${n}, described as ${d} which includes: `);
+                event.preventDefault();
+                //return data;
+            }
+          
         } catch (e) {
             console.log(e);
             //return e;

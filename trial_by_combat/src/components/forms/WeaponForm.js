@@ -13,6 +13,7 @@ class WeaponForm extends React.Component {
       this.setState({value: event.target.value}); 
   }
   handleSubmit(event) {
+     
     (async () => {
         const settings = {
             method: 'POST',
@@ -36,9 +37,14 @@ class WeaponForm extends React.Component {
                 die = data.damageDie,
                 b = data.damageBonus,
                 p = data.price;
-            alert(`Successfully created a weapon called ${data.itemname}, described as ${d} with damage die= ${die} damage bonus= ${b} and a price of ${p} gold`);
+            if(d === undefined){
+                alert(`A weapon with this name already exists`);
+            }else{
+                alert(`Successfully created a weapon called ${data.itemname}, described as ${d} with damage die= ${die} damage bonus= ${b} and a price of ${p} gold`);
             event.preventDefault();
             //return data;
+            }
+            
         } catch (e) {
             console.log(e);
             //return e;

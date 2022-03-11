@@ -29,6 +29,8 @@ class AvatarDashboard extends React.Component {
         this.props.parentCallback5('ArmorList');
     }
 
+    
+
   render() {
         if (this.props.visComponent === 'AvatarDashboard') {
            
