@@ -8,7 +8,6 @@ import ItemsList from './ItemsList'
 import RandomItemsList from './RandomItemsList';
 import Avatar from './listings/Avatar';
 
-
 class UserDashboard extends React.Component {
   constructor(props) {
     super(props) 
@@ -137,6 +136,9 @@ class UserDashboard extends React.Component {
               
             })
             this.setState({avatars:avatarArray}); 
+            console.log(document.getElementById("container"));
+            document.getElementById("container").click();
+
         } catch (e) {
             console.log(e);
         }      
@@ -155,13 +157,14 @@ class UserDashboard extends React.Component {
         }
         return false;
     }
+
     render() {
 
         this.fetchPlayerAvatars();
-
+    
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
-                <div class="container" onClick={this.updateUserDashboard}>
+                <div id="container" class="container" onClick={this.updateUserDashboard}>
                 <div class="col d-flex justify-content-center">
                     <div>
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -197,9 +200,10 @@ class UserDashboard extends React.Component {
                         <ItemsList parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent}/>
                         <RandomItemsList selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                     </div>
-
                 </div>
+                
             );
+                
         }
 
         else {
