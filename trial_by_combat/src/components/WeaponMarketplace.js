@@ -31,7 +31,7 @@ class WeaponMarketplace extends React.Component {
         let i = 0;
         data.forEach((weapon) => {
             weaponArray.push( <Weapon weaponName = {weapon.itemname} description = {weapon.description} damageDie = {weapon.damageDie} 
-                damageBonus = {weapon.damageBonus} price = {weapon.price} avatar = {this.props.selectedAvatar} key = {i} /> );
+                damageBonus = {weapon.damageBonus} price = {weapon.price} avatar = {this.props.selectedAvatar} id = {weapon.id} server = {this.props.server} authToken = {this.props.authToken} key = {i} /> );
             i++;
           
         })
