@@ -61,8 +61,6 @@ class UserDashboard extends React.Component {
                 key = {data.id} /> );
       
             this.setState({avatars:avatarArray});
-            // fixes avatar not loading bug
-            document.getElementById("container").click();
 
             event.preventDefault();
             //return data;
@@ -165,7 +163,7 @@ class UserDashboard extends React.Component {
 
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
-                <div id="container" class="container" onClick={this.updateUserDashboard}>
+                <div class="container" onClick={this.updateUserDashboard}>
                 <div class="col d-flex justify-content-center">
                     <div>
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
