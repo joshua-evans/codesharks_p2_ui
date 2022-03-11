@@ -25,6 +25,10 @@ class AvatarDashboard extends React.Component {
         this.props.parentCallback4('ArmorList');
     }
 
+    clickSeeItems = () => {
+        this.props.parentCallback5('ArmorList');
+    }
+
   render() {
         if (this.props.visComponent === 'AvatarDashboard') {
            
@@ -54,6 +58,7 @@ class AvatarDashboard extends React.Component {
                                 <li><a id='WeaponMarketplaceButton' class="nav-link px-2" onClick={this.clickWeaponMarketplace}>Weapon Marketplace</a></li>
                                 <li><a id='HealingPotionMarketplaceButton' class="nav-link px-2" onClick={this.clickHealingPotionMarketplace}>Healing Potion Marketplace</a></li>
                                 <li><a id='ArmorMarketplaceButton' class="nav-link px-2" onClick={this.clickArmorMarketplace}>Armor Marketplace</a></li>
+                                <li><a id='SeeMyItemsButton' class="nav-link px-2" onClick={this.clickSeeItems}>View My Items</a></li>
                             </tr>
                         </tbody>
                        

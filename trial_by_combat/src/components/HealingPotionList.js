@@ -30,7 +30,7 @@ class HealingPotionList extends React.Component {
         let i = 0;
         data.forEach((potion) => {
             healingPotionArray.push( <HealingPotion potionName = {potion.itemname} description = {potion.description} healingDie = {potion.healingDie} 
-                healingBonus = {potion.healingBonus} price = {potion.price} avatar = {this.props.selectedAvatar} key = {i} /> );
+                healingBonus = {potion.healingBonus} price = {potion.price} avatar = {this.props.selectedAvatar} id = {potion.id} server = {this.props.server} authToken = {this.props.authToken} key = {i} /> );
             i++;
           
         })

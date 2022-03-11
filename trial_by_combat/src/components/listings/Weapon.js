@@ -10,6 +10,29 @@ class Weapon extends React.Component {
 
     purchaseWeapon = () => {
        if(this.props.avatar.props.gold >= this.props.price){
+            let avatar_id = this.props.avatar.props.id;
+            let item_id = this.props.id;
+            (async () => {
+                const settings = {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${this.props.authToken}`
+              },
+              body: JSON.stringify({ 
+                  avatar: {id: avatar_id} ,
+                  item: {id: item_id}
+              })
+            }
+              try {
+                const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/avatar_item`, settings);
+                const data = await fetchResponse.json();
+            } catch (e) {
+                console.log(e);
+            }  
+            })();  
+      
             switch(this.props.weaponName.charAt(0)){
                 case 'A':
                 case 'a':

@@ -30,7 +30,7 @@ class ArmorList extends React.Component {
         let i = 0;
         data.forEach((armor) => {
             armorArray.push( <Armor armorName = {armor.itemname} description = {armor.description} armorClass = {armor.armorClass} 
-                damageReduction = {armor.damageReduction} price = {armor.price} avatar = {this.props.selectedAvatar} key = {i} /> );
+                damageReduction = {armor.damageReduction} price = {armor.price} avatar = {this.props.selectedAvatar} id = {armor.id} server = {this.props.server} authToken = {this.props.authToken} key = {i} /> );
             i++;
           
         })
