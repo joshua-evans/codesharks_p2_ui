@@ -63,6 +63,7 @@ class RandomItemsList extends React.Component {
       }
 
       refreshRandomItemList = () => {
+            console.log(this.props.selectedAvatar);
             this.fetchRandomItems();
             this.forceUpdate();
       }

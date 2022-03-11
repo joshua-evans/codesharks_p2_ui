@@ -69,11 +69,13 @@ class UserDashboard extends React.Component {
     clickSelectAvater = (childData) => {
         this.setState({visComponent:"AvatarDashboard"})
         this.setState({selectedAvatar:childData})
+        console.log(childData.props.gold);
     }
 
     returnToAvatarList = (childData) => {
         this.setState({visComponent:"AvatarList"})
         this.setState({selectedAvatar:""})
+        console.log(this.state.selectedAvatar.props.gold);
     }
 
     clickWeaponMarketplace = () => {
