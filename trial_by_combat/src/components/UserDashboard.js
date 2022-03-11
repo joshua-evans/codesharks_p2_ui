@@ -6,6 +6,7 @@ import HealingPotionList from './HealingPotionList';
 import ArmorList from './ArmorList';
 import ItemsList from './ItemsList'
 import RandomItemsList from './RandomItemsList';
+import Avatar from './listings/Avatar';
 
 
 class UserDashboard extends React.Component {
@@ -13,10 +14,16 @@ class UserDashboard extends React.Component {
     super(props) 
     this.state = {value: "",
                   visComponent:"AvatarList",
-                  selectedAvatar:""
+                  selectedAvatar:"",
+                  avatars: []
                 };
     this.handleChange = this.handleChange.bind(this);  
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.fetchPlayerAvatars = this.fetchPlayerAvatars.bind(this);
+    this.updateUserDashboard = this.updateUserDashboard.bind(this);
+    this.clickSelectAvatar = this.clickSelectAvatar.bind(this);
+    this.returnToAvatarList = this.returnToAvatarList.bind(this);
+    this.fetchPlayerAvatars();
   }
   handleChange(event) {
       this.setState({value: event.target.value}); 
@@ -37,11 +44,22 @@ class UserDashboard extends React.Component {
         try {
             const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/avatar`, settings);
             const data = await fetchResponse.json();
-            let s = data.strength,
-                d = data.dexterity,
-                c = data.constitution,
-                h = data.maximumHealth;
-            alert(`Successfully created ${data.avatarname} with STR ${s} DEX ${d} CON ${c} HP ${h}`);
+            let avatarArray = this.state.avatars;
+            avatarArray.push( <Avatar 
+                parentCallback = {this.props.parentCallback} 
+                id = {data.id} 
+                avatarName = {data.avatarname} 
+                strength = {data.strength} 
+                dexterity = {data.dexterity} 
+                constitution = {data.constitution} 
+                intelligence = {data.intelligence} 
+                wisdom = {data.wisdom} 
+                charisma = {data.charisma} 
+                gold = {data.gold} 
+                currentHealth = {data.currentHealth} 
+                maximumHealth = {data.maximumHealth} 
+                key = {data.id} /> );
+            this.setState({avatars:avatarArray});
             event.preventDefault();
             //return data;
         } catch (e) {
@@ -49,6 +67,7 @@ class UserDashboard extends React.Component {
             //return e;
         }  
     })();  
+    this.forceUpdate();
   }
 
     clickCreateWeapon = () => {
@@ -67,14 +86,16 @@ class UserDashboard extends React.Component {
         this.props.parentCallback('ArmorForm');
     }
 
-    clickSelectAvater = (childData) => {
-        this.setState({visComponent:"AvatarDashboard"})
-        this.setState({selectedAvatar:childData})
+    clickSelectAvatar(childData) {
+        this.setState({visComponent:"AvatarDashboard",
+                    selectedAvatar:childData});
+        console.log(childData);
+        console.log(this.state.selectedAvatar);
     }
 
-    returnToAvatarList = (childData) => {
-        this.setState({visComponent:"AvatarList"})
-        this.setState({selectedAvatar:""})
+    returnToAvatarList() {
+        this.setState({visComponent:"AvatarList"});
+        this.setState({selectedAvatar:""});
     }
 
     clickWeaponMarketplace = () => {
@@ -93,10 +114,54 @@ class UserDashboard extends React.Component {
         this.setState({visComponent:"ItemsList"})
     }
 
+    fetchPlayerAvatars = async () => {
+        let avatarArray = [];
+    
+        const settings = {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.props.authToken}`
+            }
+        };
+        try {
+            const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/avatar/player`, settings);
+            const data = await fetchResponse.json();
+            let i = 0;
+            data.forEach((avatar) => {
+                avatarArray.push( <Avatar parentCallback = {this.clickSelectAvatar} id = {avatar.id} avatarName = {avatar.avatarname} strength = {avatar.strength} dexterity = {avatar.dexterity} 
+                    constitution = {avatar.constitution} intelligence = {avatar.intelligence} wisdom = {avatar.wisdom} charisma = {avatar.charisma} 
+                    gold = {avatar.gold} currentHealth = {avatar.currentHealth} maximumHealth = {avatar.maximumHealth} key = {i} /> );
+                i++;
+              
+            })
+            this.setState({avatars:avatarArray}); 
+        } catch (e) {
+            console.log(e);
+        }      
+      }
+
+    updateUserDashboard() {
+        this.fetchPlayerAvatars();
+        this.forceUpdate();
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.visibleComponent != this.props.visibleComponent
+            || nextProps.authToken != this.props.authToken
+            ) {
+            return true;
+        }
+        return false;
+    }
     render() {
+
+        this.fetchPlayerAvatars();
+
         if (this.props.visibleComponent === 'UserDashboard') {
             return (
-                <div class="container">
+                <div class="container" onClick={this.updateUserDashboard}>
                 <div class="col d-flex justify-content-center">
                     <div>
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -120,7 +185,7 @@ class UserDashboard extends React.Component {
 
                 </div>
                     <div>
-                        <AvatarList parentCallback = {this.clickSelectAvater} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
+                        <AvatarList avatars = {this.state.avatars} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} />
                         <AvatarDashboard  parentCallback = {this.returnToAvatarList} selectedAvatar = {this.state.selectedAvatar} authToken = {this.props.authToken} server = {this.props.server} visComponent = {this.state.visComponent} 
                         parentCallback2 = {this.clickWeaponMarketplace}
                         parentCallback3 = {this.clickHealingPotionMarketplace}

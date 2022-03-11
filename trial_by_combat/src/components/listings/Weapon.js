@@ -62,7 +62,8 @@ class Weapon extends React.Component {
                 <td>{this.props.damageDie}</td>
                 <td>{this.props.damageBonus}</td>
                 <td>{this.props.price}</td>
-                <td><a class="nav-link px-2" onClick = {this.purchaseWeapon}>Purchase</a></td>
+                {(this.props.displayOnly) ?
+                   <></> : <td><a class="nav-link px-2" onClick = {this.purchaseWeapon}>Purchase</a></td>}
             </tr>
         )
     }

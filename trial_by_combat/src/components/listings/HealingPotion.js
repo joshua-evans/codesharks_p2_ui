@@ -60,7 +60,8 @@ class HealingPotion extends React.Component {
                 <td>{this.props.healingDie}</td>
                 <td>{this.props.healingBonus}</td>
                 <td>{this.props.price}</td>
-                <td><a class="nav-link px-2" onClick = {this.purchasePotion}>Purchase</a></td>
+                {(this.props.displayOnly) ?
+                   <></> : <td><a class="nav-link px-2" onClick = {this.purchasePotion}>Purchase</a></td>}
             </tr>
         )
     }

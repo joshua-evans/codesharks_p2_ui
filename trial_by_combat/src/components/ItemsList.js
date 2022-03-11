@@ -32,21 +32,22 @@ class ItemsList extends React.Component {
         }
     };
     try {
-        const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/avatar_item/avatar/?id=${this.props.selectedAvatar.id}`, settings);
+        const fetchResponse = await fetch(`${this.props.server}/trial-by-combat/avatar_item/avatar/?id=${this.props.selectedAvatar.props.id}`, settings);
         const data = await fetchResponse.json();
         let i = 0;
-        data.forEach((item) => {
+        data.forEach((entry) => {
+            let item = entry.item;
             if(item.armorClass){
                 armorArray.push( <Armor itemName = {item.itemname} description = {item.description} armorClass = {item.armorClass} 
-                    damageReduction = {item.damageReduction} price = {item.price} key = {i} /> );
+                    damageReduction = {item.damageReduction} price = {item.price} key = {i} displayOnly = "true" /> );
                 i++;
             } else if (item.damageDie){
                 weaponArray.push( <Weapon weaponName = {item.itemname} description = {item.description} damageDie = {item.damageDie} 
-                    damageBonus = {item.damageBonus} price = {item.price} key = {i} /> );
+                    damageBonus = {item.damageBonus} price = {item.price} key = {i} displayOnly = "true" /> );
                 i++;            
             } else{
                 potionArray.push( <HealingPotion potionName = {item.itemname} description = {item.description} healingDie = {item.healingDie} 
-                    healingBonus = {item.healingBonus} price = {item.price} key = {i} /> );
+                    healingBonus = {item.healingBonus} price = {item.price} key = {i} displayOnly = "true" /> );
                 i++;
             }
             

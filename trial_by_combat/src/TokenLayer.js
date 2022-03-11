@@ -97,7 +97,7 @@ class TokenLayer extends React.Component {
                 <ChallengeBoard player= {this.state.player} authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent}/>
                 <LoginForm server = {this.state.server} parentCallback = {this.handleLogin} visibleComponent = {this.state.visibleComponent} />  
                 <RegistrationForm server = {this.state.server} parentCallback = {this.handleRegistration} visibleComponent = {this.state.visibleComponent} />
-                <UserDashboard authToken = {this.state.token} server = {this.state.server} parentCallback = {this.dashboardRedirect} visibleComponent = {this.state.visibleComponent} />
+                <UserDashboard player= {this.state.player} authToken = {this.state.token} server = {this.state.server} parentCallback = {this.dashboardRedirect} visibleComponent = {this.state.visibleComponent} />
                 <WeaponForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
                 <HealingPotionForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
                 <LoadoutForm authToken = {this.state.token} server = {this.state.server} visibleComponent = {this.state.visibleComponent} />
