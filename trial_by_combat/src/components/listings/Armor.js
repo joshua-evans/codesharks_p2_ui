@@ -59,7 +59,8 @@ class Armor extends React.Component {
                 <td>{this.props.armorClass}</td>
                 <td>{this.props.damageReduction}</td>
                 <td>{this.props.price}</td>
-                <td><a class="nav-link px-2" onClick = {this.purchaseArmor}>Purchase</a></td>
+                {(this.props.displayOnly) ?
+                   <></> : <td><a class="nav-link px-2" onClick = {this.purchaseArmor}>Purchase</a></td>}
             </tr>
         )
     }
