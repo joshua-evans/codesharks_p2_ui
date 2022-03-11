@@ -1,5 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
 import './login_form.css';
 
 import Header from './Header';
